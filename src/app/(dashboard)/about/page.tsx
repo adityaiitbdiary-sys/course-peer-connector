@@ -102,7 +102,7 @@ export default function AboutPage() {
 
                         <div className="w-48 h-48 rounded-full border border-black shadow-sm overflow-hidden mb-8 relative bg-white flex items-center justify-center">
                             <Image
-                                src="/aditya.jpg"
+                                src="/aditya.jpeg"
                                 alt="Aditya Jaswani"
                                 fill
                                 className="object-cover"
