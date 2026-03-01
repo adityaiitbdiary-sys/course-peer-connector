@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Course Peer Connector",
-  description: "Connect with seniors to get course reviews.",
+  title: "B42",
+  description: "Before you decide, check B42.",
 };
 
 import { Toaster } from "@/components/ui/sonner"

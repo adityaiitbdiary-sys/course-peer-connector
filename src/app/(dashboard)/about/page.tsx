@@ -92,7 +92,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Right Column (Meet the Creator) */}
-                <div className="relative top-0 lg:sticky lg:top-8 mt-4 lg:mt-0">
+                <div className="relative top-0 lg:sticky lg:top-8 mt-4 lg:mt-0 flex flex-col gap-6">
                     <div className="border border-black rounded-3xl p-8 bg-slate-50 flex flex-col items-center text-center shadow-sm">
 
                         <div className="flex items-center gap-3 mb-10 w-full justify-center lg:justify-start">
@@ -126,6 +126,23 @@ export default function AboutPage() {
                         </div>
 
                     </div>
+
+                    {/* Meaning of B42 Box */}
+                    <div className="border border-black rounded-3xl p-8 bg-slate-50 flex flex-col text-left shadow-sm">
+                        <h3 className="text-xl font-bold mb-4 tracking-tight">Why <span className="bg-black text-white px-2 py-1 rounded-md ml-1">B42</span> ?</h3>
+                        <div className="space-y-4 text-slate-700 text-sm leading-relaxed font-medium">
+                            <p>
+                                <strong>B42</strong> is more than just a name - <strong>B4</strong> sounds like &quot;before,&quot; a reminder to always check in before choosing your courses.
+                            </p>
+                            <p>
+                                And <strong>42</strong>? It is the roll number that started it all; if you know, you know.
+                            </p>
+                            <p className="pt-4 mt-2 border-t border-black/10 text-black font-bold text-base">
+                                Put it together, and you get something simple: before you decide, check B42.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
