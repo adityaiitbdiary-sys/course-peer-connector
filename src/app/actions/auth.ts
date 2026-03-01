@@ -112,3 +112,74 @@ export async function signOut() {
     await supabase.auth.signOut()
     redirect('/login')
 }
+
+export async function sendOTP(formData: FormData) {
+    const rollNumber = formData.get('rollNumber')?.toString().toUpperCase()
+
+    if (!rollNumber) {
+        return { error: 'Roll Number is required.' }
+    }
+
+    const supabase = await createClient()
+
+    // 1. Look up the email associated with this roll number
+    const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('email')
+        .eq('roll_number', rollNumber)
+        .single()
+
+    if (profileError || !profile) {
+        return { error: 'No account found with this Roll Number.' }
+    }
+
+    // 2. Send OTP to that email
+    const { error: authError } = await supabase.auth.signInWithOtp({
+        email: profile.email,
+        options: {
+            shouldCreateUser: false,
+        }
+    })
+
+    if (authError) {
+        return { error: 'Failed to send OTP. Please try again.' }
+    }
+
+    return { success: true }
+}
+
+export async function verifyOTP(formData: FormData) {
+    const rollNumber = formData.get('rollNumber')?.toString().toUpperCase()
+    const otp = formData.get('otp')?.toString()
+
+    if (!rollNumber || !otp) {
+        return { error: 'Roll Number and OTP code are required.' }
+    }
+
+    const supabase = await createClient()
+
+    // 1. Look up the email associated with this roll number
+    const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('email')
+        .eq('roll_number', rollNumber)
+        .single()
+
+    if (profileError || !profile) {
+        return { error: 'Invalid Roll Number.' }
+    }
+
+    // 2. Verify OTP
+    const { error: authError } = await supabase.auth.verifyOtp({
+        email: profile.email,
+        token: otp,
+        type: 'email',
+    })
+
+    if (authError) {
+        return { error: 'Invalid or expired OTP code.' }
+    }
+
+    revalidatePath('/')
+    redirect('/courses')
+}
