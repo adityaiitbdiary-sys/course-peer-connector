@@ -1,108 +1,133 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { BookOpen, Users, HelpCircle, Heart, Search, MessageSquare } from 'lucide-react'
+import { Search, Users, Flag, User, Link as LinkIcon, Mail, FolderOpen, Blocks } from 'lucide-react'
+import Image from 'next/image'
 
 export default function AboutPage() {
     return (
-        <div className="space-y-16 max-w-5xl mx-auto pb-12">
-            {/* Intro Section */}
-            <div className="text-center max-w-2xl mx-auto mt-8">
-                <h1 className="text-4xl font-bold tracking-tight text-slate-900">About Peer Connect</h1>
-                <p className="text-muted-foreground mt-4 text-lg">
-                    A platform built by students, for students, to make course selection a bit easier.
-                </p>
-            </div>
+        <div className="max-w-6xl mx-auto pb-12 text-black font-sans">
 
-            {/* How it works section (Matched to User Design) */}
-            <div className="py-8">
-                <div className="text-center mb-12 flex flex-col items-center">
-                    <span className="text-blue-600 font-bold tracking-widest text-xs uppercase mb-2">Process</span>
-                    <h2 className="text-3xl font-bold text-slate-900">How it works</h2>
-                    <div className="h-1 w-10 bg-blue-600 mt-4 rounded-full"></div>
-                </div>
+            <div className="grid lg:grid-cols-3 gap-12 items-start">
 
-                <div className="grid md:grid-cols-3 gap-8">
-                    {/* Step 1 */}
-                    <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
-                            <Search className="w-7 h-7 text-blue-600" />
+                {/* Left Column (Purpose + How it works) */}
+                <div className="lg:col-span-2 space-y-16">
+
+                    {/* Purpose Section */}
+                    <section>
+                        <div className="flex items-center gap-3 mb-6">
+                            <Flag className="w-8 h-8 text-black" strokeWidth={2.5} />
+                            <h2 className="text-3xl font-extrabold tracking-tight">Purpose</h2>
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-3">1. Enter Course</h3>
-                        <p className="text-slate-600 leading-relaxed text-sm">
-                            Simply type in your course code or title to instantly see the full class enrollment list for your section.
-                        </p>
-                    </div>
-
-                    {/* Step 2 */}
-                    <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
-                            <Users className="w-7 h-7 text-blue-600" />
+                        <div className="space-y-4 text-slate-800 leading-relaxed font-medium">
+                            <p>
+                                This platform is built to help students make more informed decisions
+                                while choosing their courses by making it easier to find and connect
+                                with seniors who have already taken them. Often, it is difficult to know
+                                whom to approach for guidance, especially for department electives,
+                                institute electives, or minor courses. The website simply provides a way
+                                to identify and reach out to the right people.
+                            </p>
+                            <p>
+                                The purpose is to create a reliable directory where students can search
+                                for a course and see the contact details of those who have taken it, so
+                                they can directly connect and ask their questions. By making these
+                                connections easier, the platform aims to reduce confusion and make
+                                course selection a smoother process for everyone.
+                            </p>
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-3">2. Find Peers</h3>
-                        <p className="text-slate-600 leading-relaxed text-sm">
-                            Browse profiles of verified students currently enrolled in your class and see their study preferences.
-                        </p>
-                    </div>
+                    </section>
 
-                    {/* Step 3 */}
-                    <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
-                            <MessageSquare className="w-7 h-7 text-blue-600" />
+                    {/* How it Works Section */}
+                    <section>
+                        <div className="flex items-center gap-3 mb-8">
+                            <Blocks className="w-8 h-8 text-black" strokeWidth={2.5} />
+                            <h2 className="text-3xl font-extrabold tracking-tight">How it Works</h2>
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-3">3. Connect</h3>
-                        <p className="text-slate-600 leading-relaxed text-sm">
-                            Get contact info or send a direct message to start collaborating on projects or forming study groups.
-                        </p>
-                    </div>
-                </div>
-            </div>
 
-            {/* Legacy Details Section */}
-            <div className="space-y-12 text-foreground/90 leading-relaxed max-w-3xl mx-auto pt-8 border-t">
-                <section className="space-y-4">
-                    <h2 className="text-2xl font-semibold flex items-center gap-2">
-                        <HelpCircle className="h-5 w-5 text-primary" />
-                        Purpose of the Platform
-                    </h2>
-                    <p>
-                        Peer Connect helps students connect with seniors who have already taken additional courses. The goal is simple: to help you understand a course&apos;s true difficulty, workload, and overall experience before you choose to enroll in it.
-                    </p>
-                    <p>This includes:</p>
-                    <ul className="list-disc pl-6 space-y-1">
-                        <li>Department Electives</li>
-                        <li>Institute Electives</li>
-                        <li>Minor Courses</li>
-                    </ul>
-                </section>
-
-                <section className="pt-6">
-                    <Card className="bg-slate-50 border-slate-200 shadow-sm">
-                        <CardHeader className="pb-4 flex flex-col md:flex-row md:items-center gap-4">
-                            <div className="h-16 w-16 rounded-full bg-slate-200 flex flex-col items-center justify-center border-2 border-white shadow-sm shrink-0 mx-auto md:mx-0 overflow-hidden">
-                                <span className="text-[10px] text-slate-500 text-center px-1 leading-tight">
-                                    (Image placeholder)
-                                </span>
-                            </div>
-                            <div className="text-center md:text-left">
-                                <CardTitle className="flex justify-center md:justify-start items-center gap-2 text-xl mb-1 text-slate-900">
-                                    Creator
-                                    <Heart className="h-4 w-4 text-red-500 fill-red-500" />
-                                </CardTitle>
-                                <p className="text-sm italic text-slate-600">
-                                    &quot;Created by Aditya Jaswani for students, with the hope that sharing experiences makes course selection a little easier for everyone.&quot;
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {/* Card 1 */}
+                            <div className="border border-black rounded-xl p-8 bg-white shadow-sm hover:-translate-y-1 transition-transform duration-200">
+                                <div className="w-12 h-12 border border-black bg-blue-50/50 rounded-lg flex items-center justify-center mb-6">
+                                    <Search className="w-6 h-6 text-black" strokeWidth={2} />
+                                </div>
+                                <h3 className="text-xl font-bold mb-3">01. Search a Course</h3>
+                                <p className="text-slate-700 text-sm leading-relaxed font-medium">
+                                    Enter the course code to quickly find whether students have previously taken it. The platform helps you identify the right course connections without having to search through multiple sources or ask around randomly.
                                 </p>
                             </div>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="space-y-2 pt-4 border-t border-slate-200 text-sm md:text-base text-slate-700">
-                                <p><strong>Name:</strong> Aditya Jaswani</p>
-                                <p><strong>Roll No:</strong> 24B4245</p>
-                                <p>
-                                    <strong>Email:</strong> <a href="mailto:24b4245@iitb.ac.in" className="text-blue-600 hover:text-blue-700 hover:underline">24b4245@iitb.ac.in</a>
+
+                            {/* Card 2 */}
+                            <div className="border border-black rounded-xl p-8 bg-white shadow-sm hover:-translate-y-1 transition-transform duration-200">
+                                <div className="w-12 h-12 border border-black bg-blue-50/50 rounded-lg flex items-center justify-center mb-6">
+                                    <Users className="w-6 h-6 text-black" strokeWidth={2} />
+                                </div>
+                                <h3 className="text-xl font-bold mb-3">02. Find Students</h3>
+                                <p className="text-slate-700 text-sm leading-relaxed font-medium">
+                                    Once you search, the system shows a list of students who have taken that course, along with their basic details and contact information. This makes it easy to know exactly whom you can approach for guidance.
                                 </p>
                             </div>
-                        </CardContent>
-                    </Card>
-                </section>
+
+                            {/* Card 3 */}
+                            <div className="border border-black rounded-xl p-8 bg-white shadow-sm hover:-translate-y-1 transition-transform duration-200">
+                                <div className="w-12 h-12 border border-black bg-blue-50/50 rounded-lg flex items-center justify-center mb-6">
+                                    <FolderOpen className="w-6 h-6 text-black" strokeWidth={2} />
+                                </div>
+                                <h3 className="text-xl font-bold mb-3">03. Reach Out</h3>
+                                <p className="text-slate-700 text-sm leading-relaxed font-medium">
+                                    You can directly contact the listed students to ask your questions and understand the course better. The aim is simply to make it easier to connect with the right people when deciding your courses.
+                                </p>
+                            </div>
+
+                            {/* Card 4 */}
+                            <div className="border border-black rounded-xl p-8 bg-white shadow-sm hover:-translate-y-1 transition-transform duration-200">
+                                <div className="w-12 h-12 border border-black bg-blue-50/50 rounded-lg flex items-center justify-center mb-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-activity w-6 h-6 text-black"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" /></svg>
+                                </div>
+                                <h3 className="text-xl font-bold mb-3">04. Add Your Courses</h3>
+                                <p className="text-slate-700 text-sm leading-relaxed font-medium">
+                                    To keep the platform useful for everyone, users add the courses they have completed. This helps build the directory so future students can also find and connect with the right people.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                {/* Right Column (Meet the Creator) */}
+                <div className="relative top-0 lg:sticky lg:top-8 mt-4 lg:mt-0">
+                    <div className="border border-black rounded-3xl p-8 bg-slate-50 flex flex-col items-center text-center shadow-sm">
+
+                        <div className="flex items-center gap-3 mb-10 w-full justify-center lg:justify-start">
+                            <User className="w-6 h-6 flex-shrink-0" strokeWidth={2.5} />
+                            <h2 className="text-2xl font-extrabold tracking-tight text-left leading-tight">Meet the<br />Creator</h2>
+                        </div>
+
+                        <div className="w-48 h-48 rounded-full border border-black shadow-sm overflow-hidden mb-8 relative bg-white flex items-center justify-center">
+                            <Image
+                                src="/aditya.jpg"
+                                alt="Aditya Jaswani"
+                                fill
+                                className="object-cover"
+                                unoptimized
+                            />
+                        </div>
+
+                        <h3 className="text-2xl font-extrabold mb-1 tracking-tight">Aditya Jaswani</h3>
+                        <p className="text-xl font-bold mb-1 tracking-tight">24B4245</p>
+                        <p className="text-lg font-bold mb-10 tracking-tight">24b4245@iitb.ac.in</p>
+
+                        <div className="w-16 h-px bg-black opacity-20 mb-8"></div>
+
+                        <div className="flex gap-4">
+                            <a href="#" className="w-10 h-10 rounded-full bg-white border border-black shadow-sm flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200">
+                                <LinkIcon className="w-4 h-4" />
+                            </a>
+                            <a href="mailto:24b4245@iitb.ac.in" className="w-10 h-10 rounded-full bg-white border border-black shadow-sm flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200">
+                                <Mail className="w-4 h-4" />
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     )
