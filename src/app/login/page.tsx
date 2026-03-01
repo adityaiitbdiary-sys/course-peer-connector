@@ -48,7 +48,7 @@ export default function LoginPage() {
                 toast.error('Failed to send OTP', { description: result.error })
             } else if (result?.success) {
                 setOtpStep('verify')
-                setSuccessMsg('A 6-digit code has been sent to your registered email.')
+                setSuccessMsg('An 8-digit code has been sent to your registered email.')
                 toast.success('OTP Sent!')
             }
         })
@@ -80,7 +80,7 @@ export default function LoginPage() {
                             ? 'Enter your Roll Number to access your account.'
                             : otpStep === 'request'
                                 ? 'We will send a special login code to your registered email.'
-                                : 'Enter the 6-digit code sent to your email.'}
+                                : 'Enter the 8-digit code sent to your email.'}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -178,14 +178,14 @@ export default function LoginPage() {
                             {successMsg && <p className="text-sm font-medium text-green-600 dark:text-green-500">{successMsg}</p>}
 
                             <div className="space-y-2">
-                                <Label htmlFor="otp">6-Digit Code</Label>
+                                <Label htmlFor="otp">8-Digit Code</Label>
                                 <Input
                                     id="otp"
                                     name="otp"
-                                    placeholder="000000"
+                                    placeholder="00000000"
                                     required
                                     className="text-center tracking-widest text-lg"
-                                    maxLength={6}
+                                    maxLength={8}
                                 />
                             </div>
 
