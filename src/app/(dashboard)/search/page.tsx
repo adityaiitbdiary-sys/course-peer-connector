@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Search } from 'lucide-react'
+import { Search, Star } from 'lucide-react'
 import { useState, useTransition } from 'react'
 import { toast } from 'sonner'
 
@@ -15,6 +15,11 @@ export default function SearchPage() {
     const [hasSearched, setHasSearched] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const [isPending, startTransition] = useTransition()
+
+    // Calculate average rating
+    const averageRating = results.length > 0
+        ? (results.reduce((acc, curr) => acc + curr.rating, 0) / results.length).toFixed(1)
+        : null
 
     async function handleSearch(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
@@ -79,8 +84,13 @@ export default function SearchPage() {
 
             {hasSearched && (
                 <div className="space-y-4">
-                    <h2 className="text-xl font-bold tracking-tight">
-                        Results for &quot;{searchQuery.toUpperCase()}&quot;
+                    <h2 className="text-xl font-bold tracking-tight flex items-center">
+                        <span>Results for &quot;{searchQuery.toUpperCase()}&quot;</span>
+                        {averageRating && (
+                            <span className="text-muted-foreground font-normal ml-3 flex items-center">
+                                • <Star className="h-5 w-5 ml-2 mr-1 text-yellow-500 fill-current" /> {averageRating} / 5
+                            </span>
+                        )}
                     </h2>
 
                     {results.length === 0 ? (
@@ -94,6 +104,8 @@ export default function SearchPage() {
                                     <TableRow>
                                         <TableHead>Name</TableHead>
                                         <TableHead>Roll No.</TableHead>
+                                        <TableHead>Rating</TableHead>
+                                        <TableHead>Grade</TableHead>
                                         <TableHead>Email</TableHead>
                                         <TableHead>Phone</TableHead>
                                         <TableHead>Grad. Year</TableHead>
@@ -104,6 +116,22 @@ export default function SearchPage() {
                                         <TableRow key={result.id}>
                                             <TableCell className="font-medium">{result.profiles.name}</TableCell>
                                             <TableCell>{result.profiles.roll_number}</TableCell>
+                                            <TableCell>
+                                                <div className="flex items-center">
+                                                    {[1, 2, 3, 4, 5].map((star) => (
+                                                        <Star
+                                                            key={star}
+                                                            className={`h-4 w-4 ${result.rating >= star
+                                                                    ? 'fill-yellow-400 text-yellow-400'
+                                                                    : 'text-muted-foreground/30'
+                                                                }`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            </TableCell>
+                                            <TableCell>
+                                                {result.grade ? result.grade : <span className="text-muted-foreground italic">N/A</span>}
+                                            </TableCell>
                                             <TableCell>
                                                 <a href={`mailto:${result.profiles.email}`} className="text-primary hover:underline">
                                                     {result.profiles.email}

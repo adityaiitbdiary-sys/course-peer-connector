@@ -26,6 +26,8 @@ create table student_courses (
   id uuid default gen_random_uuid() primary key,
   student_id uuid references profiles(id) on delete cascade not null,
   course_code text not null,
+  rating integer not null check (rating >= 1 and rating <= 5),
+  grade integer check (grade >= 4 and grade <= 10),
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 

@@ -6,6 +6,8 @@ export type SearchResult = {
     id: string
     course_code: string
     student_id: string
+    rating: number
+    grade: number | null
     profiles: {
         name: string
         roll_number: string
@@ -37,6 +39,8 @@ export async function searchCourse(formData: FormData): Promise<{ data?: SearchR
       id,
       course_code,
       student_id,
+      rating,
+      grade,
       profiles!inner (
         name,
         roll_number,

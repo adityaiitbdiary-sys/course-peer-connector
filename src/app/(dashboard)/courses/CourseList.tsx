@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Edit2, Trash2 } from 'lucide-react'
+import { Edit2, Trash2, Star } from 'lucide-react'
 import { useState, useTransition } from 'react'
 import { toast } from 'sonner'
 
@@ -14,6 +14,8 @@ type Course = {
     id: string
     course_code: string
     created_at: string
+    rating: number
+    grade: number | null
 }
 
 export default function CourseList({ courses }: { courses: Course[] }) {
@@ -64,6 +66,8 @@ export default function CourseList({ courses }: { courses: Course[] }) {
                     <TableHeader>
                         <TableRow>
                             <TableHead>Course Code</TableHead>
+                            <TableHead>Rating</TableHead>
+                            <TableHead>Grade</TableHead>
                             <TableHead>Added On</TableHead>
                             <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
@@ -72,6 +76,22 @@ export default function CourseList({ courses }: { courses: Course[] }) {
                         {courses.map((course) => (
                             <TableRow key={course.id}>
                                 <TableCell className="font-medium">{course.course_code}</TableCell>
+                                <TableCell>
+                                    <div className="flex items-center">
+                                        {[1, 2, 3, 4, 5].map((star) => (
+                                            <Star
+                                                key={star}
+                                                className={`h-4 w-4 ${course.rating >= star
+                                                        ? 'fill-yellow-400 text-yellow-400'
+                                                        : 'text-muted-foreground/30'
+                                                    }`}
+                                            />
+                                        ))}
+                                    </div>
+                                </TableCell>
+                                <TableCell>
+                                    {course.grade ? course.grade : <span className="text-muted-foreground italic">N/A</span>}
+                                </TableCell>
                                 <TableCell>
                                     {new Date(course.created_at).toLocaleDateString()}
                                 </TableCell>

@@ -5,16 +5,32 @@ import { revalidatePath } from 'next/cache'
 
 export async function addCourse(formData: FormData) {
     const rawCourseCode = formData.get('courseCode')?.toString()
+    const rawRating = formData.get('rating')?.toString()
+    const rawGrade = formData.get('grade')?.toString()
 
     if (!rawCourseCode) {
         return { error: 'Course code is required.' }
     }
 
+    if (!rawRating) {
+        return { error: 'Course rating is required.' }
+    }
+
     // Standardize: UPPERCASE and remove all spaces
     const courseCode = rawCourseCode.toUpperCase().replace(/\s+/g, '')
+    const rating = parseInt(rawRating, 10)
+    const grade = rawGrade ? parseInt(rawGrade, 10) : null
 
     if (courseCode.length < 3) {
         return { error: 'Course code must be at least 3 characters.' }
+    }
+
+    if (rating < 1 || rating > 5) {
+        return { error: 'Rating must be between 1 and 5 stars.' }
+    }
+
+    if (grade !== null && (grade < 4 || grade > 10)) {
+        return { error: 'Grade must be between 4 and 10.' }
     }
 
     const supabase = await createClient()
@@ -39,6 +55,8 @@ export async function addCourse(formData: FormData) {
     const { error } = await supabase.from('student_courses').insert({
         student_id: user.id,
         course_code: courseCode,
+        rating: rating,
+        grade: grade,
     })
 
     if (error) {
