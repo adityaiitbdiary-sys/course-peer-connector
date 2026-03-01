@@ -24,7 +24,7 @@ export default async function DashboardLayout({
             <aside className="w-full md:w-64 border-r bg-muted/40 p-4 flex flex-col gap-4">
                 <div className="flex items-center gap-2 font-bold text-xl px-2 mb-4">
                     <BookOpen className="h-6 w-6 text-primary" />
-                    <span>CourseMate</span>
+                    <span>Peer Connect</span>
                 </div>
 
                 <nav className="flex flex-col gap-1 flex-1">
