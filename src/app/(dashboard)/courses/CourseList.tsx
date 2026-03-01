@@ -21,6 +21,9 @@ type Course = {
 export default function CourseList({ courses }: { courses: Course[] }) {
     const [editingCourse, setEditingCourse] = useState<Course | null>(null)
     const [editValue, setEditValue] = useState('')
+    const [editRating, setEditRating] = useState<number>(0)
+    const [editHoveredRating, setEditHoveredRating] = useState<number>(0)
+    const [editGrade, setEditGrade] = useState<number | null>(null)
     const [isPending, startTransition] = useTransition()
 
     if (courses.length === 0) {
@@ -48,8 +51,13 @@ export default function CourseList({ courses }: { courses: Course[] }) {
         e.preventDefault()
         if (!editingCourse) return
 
+        if (editRating < 1 || editRating > 5) {
+            toast.error('Invalid Rating', { description: 'Please select a star rating between 1 and 5.' })
+            return
+        }
+
         startTransition(async () => {
-            const result = await updateCourse(editingCourse.id, editValue)
+            const result = await updateCourse(editingCourse.id, editValue, editRating, editGrade)
             if (result?.error) {
                 toast.error('Failed to update course', { description: result.error })
             } else if (result?.success) {
@@ -82,8 +90,8 @@ export default function CourseList({ courses }: { courses: Course[] }) {
                                             <Star
                                                 key={star}
                                                 className={`h-4 w-4 ${course.rating >= star
-                                                        ? 'fill-yellow-400 text-yellow-400'
-                                                        : 'text-muted-foreground/30'
+                                                    ? 'fill-yellow-400 text-yellow-400'
+                                                    : 'text-muted-foreground/30'
                                                     }`}
                                             />
                                         ))}
@@ -103,6 +111,8 @@ export default function CourseList({ courses }: { courses: Course[] }) {
                                             onClick={() => {
                                                 setEditingCourse(course)
                                                 setEditValue(course.course_code)
+                                                setEditRating(course.rating || 0)
+                                                setEditGrade(course.grade || null)
                                             }}
                                             disabled={isPending}
                                         >
@@ -145,6 +155,48 @@ export default function CourseList({ courses }: { courses: Course[] }) {
                                     className="col-span-3 uppercase"
                                     required
                                 />
+                            </div>
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label className="text-right">Rating</Label>
+                                <div className="col-span-3 flex h-10 items-center space-x-1">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <button
+                                            key={star}
+                                            type="button"
+                                            onClick={() => setEditRating(star)}
+                                            onMouseEnter={() => setEditHoveredRating(star)}
+                                            onMouseLeave={() => setEditHoveredRating(0)}
+                                            className="focus:outline-none transition-colors"
+                                        >
+                                            <Star
+                                                className={`h-6 w-6 ${(editHoveredRating || editRating) >= star
+                                                        ? 'fill-yellow-400 text-yellow-400'
+                                                        : 'text-muted-foreground hover:bg-muted rounded-md'
+                                                    }`}
+                                            />
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="editGrade" className="text-right">
+                                    Grade
+                                </Label>
+                                <select
+                                    id="editGrade"
+                                    value={editGrade || ""}
+                                    onChange={(e) => setEditGrade(e.target.value ? parseInt(e.target.value) : null)}
+                                    className="col-span-3 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                >
+                                    <option value="">No Grade</option>
+                                    <option value="10">10 (AA/AP)</option>
+                                    <option value="9">9 (AB)</option>
+                                    <option value="8">8 (BB)</option>
+                                    <option value="7">7 (BC)</option>
+                                    <option value="6">6 (CC)</option>
+                                    <option value="5">5 (CD)</option>
+                                    <option value="4">4 (DD)</option>
+                                </select>
                             </div>
                         </div>
                         <DialogFooter>

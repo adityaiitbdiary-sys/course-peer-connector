@@ -92,11 +92,19 @@ export async function deleteCourse(courseId: string) {
     return { success: 'Course deleted successfully.' }
 }
 
-export async function updateCourse(courseId: string, newRawCourseCode: string) {
+export async function updateCourse(courseId: string, newRawCourseCode: string, newRating: number, newGrade: number | null) {
     const newCourseCode = newRawCourseCode.toUpperCase().replace(/\s+/g, '')
 
     if (newCourseCode.length < 3) {
         return { error: 'Course code must be at least 3 characters.' }
+    }
+
+    if (newRating < 1 || newRating > 5) {
+        return { error: 'Rating must be between 1 and 5 stars.' }
+    }
+
+    if (newGrade !== null && (newGrade < 4 || newGrade > 10)) {
+        return { error: 'Grade must be between 4 and 10.' }
     }
 
     const supabase = await createClient()
@@ -121,7 +129,7 @@ export async function updateCourse(courseId: string, newRawCourseCode: string) {
 
     const { error } = await supabase
         .from('student_courses')
-        .update({ course_code: newCourseCode })
+        .update({ course_code: newCourseCode, rating: newRating, grade: newGrade })
         .eq('id', courseId)
         .eq('student_id', user.id)
 
