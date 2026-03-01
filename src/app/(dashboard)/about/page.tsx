@@ -128,18 +128,30 @@ export default function AboutPage() {
                     </div>
 
                     {/* Meaning of B42 Box */}
-                    <div className="border border-black rounded-3xl p-8 bg-slate-50 flex flex-col text-left shadow-sm">
-                        <h3 className="text-xl font-bold mb-4 tracking-tight">Why <span className="bg-black text-white px-2 py-1 rounded-md ml-1">B42</span> ?</h3>
-                        <div className="space-y-4 text-slate-700 text-sm leading-relaxed font-medium">
+                    <div className="rounded-3xl p-8 bg-black text-white flex flex-col text-left shadow-lg relative overflow-hidden mt-4">
+                        {/* Decorative subtle background element */}
+                        <div className="absolute -top-4 -right-4 opacity-[0.03] pointer-events-none">
+                            <span className="text-[12rem] font-black leading-none">?</span>
+                        </div>
+
+                        <h3 className="text-2xl font-extrabold mb-5 tracking-tight flex items-center gap-2">
+                            Why B42?
+                        </h3>
+
+                        <div className="space-y-4 text-slate-300 text-sm leading-relaxed font-medium relative z-10">
                             <p>
-                                <strong>B42</strong> is more than just a name - <strong>B4</strong> sounds like &quot;before,&quot; a reminder to always check in before choosing your courses.
+                                <strong className="text-white">B42</strong> is more than just a name - <strong className="text-white">B4</strong> sounds like &quot;before,&quot; a reminder to always check in before choosing your courses.
                             </p>
                             <p>
-                                And <strong>42</strong>? It is the roll number that started it all; if you know, you know.
+                                And <strong className="text-white">42</strong>? It is the roll number that started it all; if you know, you know.
                             </p>
-                            <p className="pt-4 mt-2 border-t border-black/10 text-black font-bold text-base">
-                                Put it together, and you get something simple: before you decide, check B42.
-                            </p>
+
+                            <div className="pt-5 mt-2 border-t border-white/10">
+                                <p className="text-white font-bold text-base leading-snug">
+                                    Put it together, and you get something simple:<br />
+                                    <span className="text-blue-400">before you decide, check B42.</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
 
