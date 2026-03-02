@@ -74,6 +74,9 @@ export default function LoginPage() {
         <div className="flex min-h-screen items-center justify-center p-4">
             <Card className="mx-auto w-full max-w-sm">
                 <CardHeader>
+                    <div className="flex justify-center mb-4">
+                        <img src="/B42_logo.png" alt="B42 Logo" className="h-[42px] w-auto object-contain rounded-xl" />
+                    </div>
                     <CardTitle className="text-2xl font-bold">Login</CardTitle>
                     <CardDescription>
                         {method === 'password'

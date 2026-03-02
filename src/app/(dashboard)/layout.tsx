@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { signOut } from '@/app/actions/auth'
-import { User, Info, Search, LogOut, BookOpen } from 'lucide-react'
+import { User, Info, Search, LogOut, BookOpen, MessageSquare } from 'lucide-react'
 
 export default async function DashboardLayout({
     children,
@@ -42,6 +42,10 @@ export default async function DashboardLayout({
                     <Link href="/profile" className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent text-sm font-medium transition-colors">
                         <User className="h-4 w-4" />
                         Edit Profile
+                    </Link>
+                    <Link href="/suggestions" className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent text-sm font-medium transition-colors">
+                        <MessageSquare className="h-4 w-4" />
+                        Suggestions
                     </Link>
                 </nav>
 
