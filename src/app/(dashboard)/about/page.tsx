@@ -127,7 +127,7 @@ export default function AboutPage() {
                             Special Mention <span className="text-xl">🌟</span>
                         </h3>
                         <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                            A special thanks to <strong className="text-black">Bhoomi Singhvi</strong> for helping me build this platform.
+                            A special thanks to <a href="https://www.linkedin.com/in/bhoomisinghvi/" target="_blank" rel="noopener noreferrer" className="font-bold text-black hover:text-blue-600 hover:underline transition-colors">Bhoomi Singhvi</a> for helping me build this platform.
                         </p>
                     </div>
 
@@ -148,14 +148,16 @@ export default function AboutPage() {
                             />
                         </div>
 
-                        <h3 className="text-2xl font-extrabold mb-1 tracking-tight">Aditya Jaswani</h3>
+                        <a href="https://www.linkedin.com/in/aditya-jaswani-28257b316/" target="_blank" rel="noopener noreferrer" className="text-2xl font-extrabold mb-1 tracking-tight hover:text-blue-600 hover:underline transition-colors">
+                            Aditya Jaswani
+                        </a>
                         <p className="text-xl font-bold mb-1 tracking-tight">24B4245</p>
                         <p className="text-lg font-bold mb-10 tracking-tight">24b4245@iitb.ac.in</p>
 
                         <div className="w-16 h-px bg-black opacity-20 mb-8"></div>
 
                         <div className="flex gap-4">
-                            <a href="#" className="w-10 h-10 rounded-full bg-white border border-black shadow-sm flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200">
+                            <a href="https://www.linkedin.com/in/aditya-jaswani-28257b316/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white border border-black shadow-sm flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200">
                                 <LinkIcon className="w-4 h-4" />
                             </a>
                             <a href="mailto:24b4245@iitb.ac.in" className="w-10 h-10 rounded-full bg-white border border-black shadow-sm flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-200">
