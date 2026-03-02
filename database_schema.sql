@@ -45,3 +45,28 @@ create policy "Users can update their own courses." on student_courses
 
 create policy "Users can delete their own courses." on student_courses
   for delete using (auth.uid() = student_id);
+
+-- Create a table for suggestions
+create table suggestions (
+  id uuid default gen_random_uuid() primary key,
+  author_id uuid references profiles(id) on delete cascade not null,
+  title text not null,
+  description text not null,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- Set up Row Level Security (RLS) for suggestions
+alter table suggestions enable row level security;
+
+create policy "Suggestions are viewable by everyone." on suggestions
+  for select using (true);
+
+create policy "Users can insert their own suggestions." on suggestions
+  for insert with check (auth.uid() = author_id);
+
+create policy "Users can update their own suggestions." on suggestions
+  for update using (auth.uid() = author_id);
+
+create policy "Users can delete their own suggestions." on suggestions
+  for delete using (auth.uid() = author_id);

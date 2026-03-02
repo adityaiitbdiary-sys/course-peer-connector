@@ -1,45 +1,39 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
+import { getSuggestions } from '@/app/actions/suggestions'
+import { createClient } from '@/lib/supabase/server'
+import SuggestionsClient from './SuggestionsClient'
+import { Metadata } from 'next'
 
-export default function SuggestionsPage() {
+export const metadata: Metadata = {
+    title: 'Suggestions | B42',
+    description: 'Provide suggestions and feedback to improve B42.',
+}
+
+export default async function SuggestionsPage() {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    // Fetch suggestions using server action
+    let suggestions: any[] = []
+    try {
+        suggestions = await getSuggestions()
+    } catch (error) {
+        console.error("Error fetching suggestions:", error)
+        // Ensure suggestions is an empty array on error gracefully
+    }
+
     return (
         <div className="space-y-6">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight">Suggestions</h1>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground mt-1 text-lg">
                     Help us improve by sharing your feedback and suggestions.
                 </p>
             </div>
 
-            <Card className="max-w-2xl">
-                <CardHeader>
-                    <CardTitle>Submit a Suggestion</CardTitle>
-                    <CardDescription>
-                        We value your input. Let us know what features or improvements you'd like to see.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <form className="space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="title">Title</Label>
-                            <Input id="title" placeholder="Brief summary of your suggestion (e.g., Add dark mode)" required />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="description">Details</Label>
-                            <Textarea
-                                id="description"
-                                placeholder="Please provide more details about your suggestion..."
-                                className="min-h-[150px]"
-                                required
-                            />
-                        </div>
-                        <Button type="button">Submit Suggestion</Button>
-                    </form>
-                </CardContent>
-            </Card>
+            <SuggestionsClient
+                initialSuggestions={suggestions}
+                currentUserId={user?.id || ''}
+            />
         </div>
     )
 }
