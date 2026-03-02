@@ -93,6 +93,44 @@ export default function AboutPage() {
 
                 {/* Right Column (Meet the Creator) */}
                 <div className="relative top-0 lg:sticky lg:top-8 mt-4 lg:mt-0 flex flex-col gap-6">
+                    {/* Meaning of B42 Box */}
+                    <div className="border border-black rounded-xl p-8 bg-white shadow-sm flex flex-col text-left relative overflow-hidden mt-4">
+                        {/* Decorative subtle background element */}
+                        <div className="absolute -top-4 -right-4 opacity-[0.03] pointer-events-none">
+                            <span className="text-[12rem] font-black leading-none text-black">?</span>
+                        </div>
+
+                        <h3 className="text-2xl font-extrabold mb-5 tracking-tight flex items-center gap-2 text-black">
+                            Why B42?
+                        </h3>
+
+                        <div className="space-y-4 text-slate-700 text-sm leading-relaxed font-medium relative z-10">
+                            <p>
+                                <strong className="text-black">B42</strong> is more than just a name - <strong className="text-black">B4</strong> sounds like &quot;before,&quot; a reminder to always check in before choosing your courses.
+                            </p>
+                            <p>
+                                And <strong className="text-black">42</strong>? It is the roll number that started it all; if you know, you know.
+                            </p>
+
+                            <div className="pt-5 mt-2 border-t border-black/10">
+                                <p className="text-black font-bold text-base leading-snug">
+                                    Put it together, and you get something simple:<br />
+                                    <span className="text-blue-600">before you decide, check B42.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Special Mention Box */}
+                    <div className="border border-black rounded-xl p-6 bg-white shadow-sm flex flex-col text-left">
+                        <h3 className="text-lg font-extrabold mb-2 tracking-tight text-black flex items-center gap-2">
+                            Special Mention <span className="text-xl">🌟</span>
+                        </h3>
+                        <p className="text-slate-700 text-sm leading-relaxed font-medium">
+                            A special thanks to <strong className="text-black">Bhoomi Singhvi</strong> for helping me build this platform.
+                        </p>
+                    </div>
+
                     <div className="border border-black rounded-3xl p-8 bg-slate-50 flex flex-col items-center text-center shadow-sm">
 
                         <div className="flex items-center gap-3 mb-10 w-full justify-center lg:justify-start">
@@ -125,34 +163,6 @@ export default function AboutPage() {
                             </a>
                         </div>
 
-                    </div>
-
-                    {/* Meaning of B42 Box */}
-                    <div className="border border-black rounded-xl p-8 bg-white shadow-sm flex flex-col text-left relative overflow-hidden mt-4">
-                        {/* Decorative subtle background element */}
-                        <div className="absolute -top-4 -right-4 opacity-[0.03] pointer-events-none">
-                            <span className="text-[12rem] font-black leading-none text-black">?</span>
-                        </div>
-
-                        <h3 className="text-2xl font-extrabold mb-5 tracking-tight flex items-center gap-2 text-black">
-                            Why B42?
-                        </h3>
-
-                        <div className="space-y-4 text-slate-700 text-sm leading-relaxed font-medium relative z-10">
-                            <p>
-                                <strong className="text-black">B42</strong> is more than just a name - <strong className="text-black">B4</strong> sounds like &quot;before,&quot; a reminder to always check in before choosing your courses.
-                            </p>
-                            <p>
-                                And <strong className="text-black">42</strong>? It is the roll number that started it all; if you know, you know.
-                            </p>
-
-                            <div className="pt-5 mt-2 border-t border-black/10">
-                                <p className="text-black font-bold text-base leading-snug">
-                                    Put it together, and you get something simple:<br />
-                                    <span className="text-blue-600">before you decide, check B42.</span>
-                                </p>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
