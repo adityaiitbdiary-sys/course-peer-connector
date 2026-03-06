@@ -28,8 +28,13 @@ export default function CourseList({ courses }: { courses: Course[] }) {
 
     if (courses.length === 0) {
         return (
-            <div className="text-center p-8 border rounded-lg bg-muted/20">
-                <p className="text-muted-foreground">You haven&apos;t added any courses yet.</p>
+            <div className="flex flex-col items-center justify-center p-8 border border-dashed rounded-lg bg-muted/30 text-center space-y-3">
+                <p className="text-muted-foreground font-medium text-lg leading-relaxed">
+                    No courses added. Somewhere a junior is about to make a terrible decision.
+                </p>
+                <p className="text-primary font-semibold">
+                    Just saying. ¬‿¬
+                </p>
             </div>
         )
     }
@@ -170,8 +175,8 @@ export default function CourseList({ courses }: { courses: Course[] }) {
                                         >
                                             <Star
                                                 className={`h-6 w-6 ${(editHoveredRating || editRating) >= star
-                                                        ? 'fill-yellow-400 text-yellow-400'
-                                                        : 'text-muted-foreground hover:bg-muted rounded-md'
+                                                    ? 'fill-yellow-400 text-yellow-400'
+                                                    : 'text-muted-foreground hover:bg-muted rounded-md'
                                                     }`}
                                             />
                                         </button>

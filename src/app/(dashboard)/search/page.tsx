@@ -94,8 +94,14 @@ export default function SearchPage() {
                     </h2>
 
                     {results.length === 0 ? (
-                        <div className="text-center p-8 border rounded-lg bg-muted/20">
-                            <p className="text-muted-foreground">No students found for this course yet.</p>
+                        <div className="flex flex-col items-center justify-center p-8 border border-dashed rounded-lg bg-muted/30 max-w-2xl mx-auto text-center space-y-3">
+                            <Search className="h-10 w-10 text-muted-foreground/50" />
+                            <p className="text-muted-foreground font-medium text-lg leading-relaxed">
+                                Either this course doesn&apos;t exist, or the seniors who took it are too busy to help their juniors.
+                            </p>
+                            <p className="text-primary font-semibold">
+                                Don&apos;t be that senior - add yours
+                            </p>
                         </div>
                     ) : (
                         <div className="border rounded-md">
@@ -122,8 +128,8 @@ export default function SearchPage() {
                                                         <Star
                                                             key={star}
                                                             className={`h-4 w-4 ${result.rating >= star
-                                                                    ? 'fill-yellow-400 text-yellow-400'
-                                                                    : 'text-muted-foreground/30'
+                                                                ? 'fill-yellow-400 text-yellow-400'
+                                                                : 'text-muted-foreground/30'
                                                                 }`}
                                                         />
                                                     ))}
