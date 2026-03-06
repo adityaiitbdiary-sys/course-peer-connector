@@ -7,7 +7,7 @@ export default async function ProfilePage() {
     const { data: { user } } = await supabase.auth.getUser()
 
     if (!user) {
-        redirect('/login')
+        redirect('/signup')
     }
 
     const { data: profile, error } = await supabase
@@ -18,8 +18,8 @@ export default async function ProfilePage() {
 
     if (error || !profile) {
         console.error('Error fetching profile:', error)
-        // Could render an error state, but re-login is safest for MVP
-        redirect('/login')
+        // Could render an error state, but redirect is safest for MVP
+        redirect('/signup')
     }
 
     // Soft cast to our known type

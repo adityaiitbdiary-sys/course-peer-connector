@@ -7,7 +7,7 @@ export default async function CoursesPage() {
     const { data: { user } } = await supabase.auth.getUser()
 
     if (!user) {
-        redirect('/login')
+        redirect('/signup')
     }
 
     const { data: courses, error } = await supabase
